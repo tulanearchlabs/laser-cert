@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Course Completion</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 40px;
+            color: #333;
+        }
+        .certificate-box {
+            border: 10px double #2c3e50;
+            padding: 50px;
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 { color: #2c3e50; font-size: 36px; margin-bottom: 10px; }
+        .name { font-size: 28px; font-weight: bold; color: #e74c3c; margin: 20px 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .date { font-style: italic; color: #7f8c8d; }
+    </style>
+</head>
+<body>
+
+    <div class="certificate-box">
+        <h1>CONGRATULATIONS!</h1>
+        <p>This certifies that the logged-in Canvas student</p>
+        
+        <div class="name" id="student-name">Student Learner</div>
+        
+        <p>has successfully completed all required module coursework.</p>
+        <p>Date of Completion:</p>
+        <div class="date" id="completion-date">Loading date...</div>
+    </div>
+
+    <script>
+        // 1. Get current date automatically
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('completion-date').textContent = today.toLocaleDateString(undefined, options);
+
+        // 2. Safely ask for their name to print on it (since Canvas blocks parent-frame data reading)
+        const savedName = localStorage.getItem('canvas_student_name');
+        if (savedName) {
+            document.getElementById('student-name').textContent = savedName;
+        } else {
+            const studentName = prompt("Please enter your full name for your completion record:");
+            if (studentName) {
+                localStorage.setItem('canvas_student_name', studentName);
+                document.getElementById('student-name').textContent = studentName;
+            }
+        }
+    </script>
+</body>
+</html>
