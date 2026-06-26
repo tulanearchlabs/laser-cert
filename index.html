@@ -25,7 +25,8 @@
         .subtitle { font-size: 14px; text-transform: uppercase; color: #777; letter-spacing: 2px; margin-bottom: 25px; }
         .name { font-size: 28px; font-weight: bold; color: #d9534f; margin: 20px 0; border-bottom: 2px solid #eceff1; padding-bottom: 10px; display: inline-block; min-width: 300px; }
         .training-title { font-size: 22px; font-weight: bold; color: #1b365d; margin: 15px 0; font-style: italic; }
-        .date { font-style: italic; color: #555; margin-top: 25px; }
+        .date-time-container { font-style: italic; color: #555; margin-top: 25px; line-height: 1.6; }
+        .timestamp { font-weight: bold; color: #1b365d; }
     </style>
 </head>
 <body>
@@ -40,12 +41,14 @@
         <p>has successfully completed all safety training and operational coursework for:</p>
         <div class="training-title" id="cert-type">General Lab Access</div>
         
-        <div class="date">Authorized on: <span id="completion-date">Loading date...</span></div>
+        <div class="date-time-container">
+            Authorized on: <span class="timestamp" id="completion-date">Loading date...</span><br>
+            At precisely: <span class="timestamp" id="completion-time">Loading time...</span>
+        </div>
     </div>
 
     <script>
         // 1. Automatically Parse URL parameters to change the training title
-        // Example: URL?training=Laser%20Cutter
         const urlParams = new URLSearchParams(window.location.search);
         const trainingName = urlParams.get('training');
         
@@ -53,10 +56,16 @@
             document.getElementById('cert-type').textContent = decodeURIComponent(trainingName);
         }
 
-        // 2. Set current date automatically
+        // 2. Set current date and local time automatically
         const today = new Date();
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('completion-date').textContent = today.toLocaleDateString(undefined, options);
+        
+        // Format Date (e.g., June 26, 2026)
+        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('completion-date').textContent = today.toLocaleDateString(undefined, dateOptions);
+
+        // Format Time (e.g., 11:45 AM CST)
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
+        document.getElementById('completion-time').textContent = today.toLocaleTimeString(undefined, timeOptions);
 
         // 3. Ask and save student name locally
         const savedName = localStorage.getItem('canvas_student_name');
