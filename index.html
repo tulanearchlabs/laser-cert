@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fabrication Lab Certification</title>
+    <title>Fabrication Lab Authorization</title>
     <style>
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -12,16 +12,41 @@
             padding: 30px;
             color: #222;
         }
-        .certificate-box {
-            border: 8px double #1b365d; /* Classic Navy */
-            padding: 40px;
-            background: white;
+
+        /* The main certificate container which holds the GIF border */
+        .security-wrapper {
+            position: relative;
             max-width: 650px;
             margin: 0 auto;
+            border-radius: 12px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            position: relative;
+            overflow: hidden; /* Keeps the GIF confined */
+            
+            /* Add your transparent GIF border loop here as a CSS background */
+            background-image: url('security-border.gif');
+            background-size: cover; /* Ensures the GIF covers the whole frame */
+            background-position: center;
+            background-repeat: repeat; /* If it's a small tileable GIF, it will repeat */
         }
-        h1 { color: #1b365d; font-size: 32px; margin-bottom: 5px; letter-spacing: 1px; }
+
+        /* The inner box that creates the "padding" and holds the actual text */
+        .certificate-box {
+            background-color: rgba(255, 255, 255, 0.96); /* High opacity white to see the GIF slightly through it */
+            margin: 20px; /* This margin defines the thickness of the visible GIF border */
+            padding: 40px;
+            position: relative;
+            z-index: 1; /* Sits on top of the border GIF */
+            border-radius: 8px; /* Slightly tighter radius than the main frame */
+        }
+
+        /* Styling for your uploaded logo image */
+        .lab-logo {
+            max-width: 150px; /* Adjust as needed */
+            height: auto;
+            margin-bottom: 25px;
+        }
+
+        h1 { color: #1b365d; font-size: 32px; margin: 10px 0 5px 0; letter-spacing: 1px; }
         .subtitle { font-size: 14px; text-transform: uppercase; color: #777; letter-spacing: 2px; margin-bottom: 25px; }
         .name { font-size: 28px; font-weight: bold; color: #d9534f; margin: 20px 0; border-bottom: 2px solid #eceff1; padding-bottom: 10px; display: inline-block; min-width: 300px; }
         .training-title { font-size: 22px; font-weight: bold; color: #1b365d; margin: 15px 0; font-style: italic; }
@@ -31,19 +56,25 @@
 </head>
 <body>
 
-    <div class="certificate-box">
-        <h1>CONGRATULATIONS</h1>
-        <div class="subtitle">Tulane Architecture Fabrication Labs</div>
+    <div class="security-wrapper">
         
-        <p>This certifies that the logged-in student</p>
-        <div class="name" id="student-name">Loading Learner...</div>
-        
-        <p>has successfully completed all safety training and operational coursework for:</p>
-        <div class="training-title" id="cert-type">General Lab Access</div>
-        
-        <div class="date-time-container">
-            Authorized on: <span class="timestamp" id="completion-date">Loading date...</span><br>
-            At precisely: <span class="timestamp" id="completion-time">Loading time...</span>
+        <div class="certificate-box">
+            
+            <img src="tulane-logo.png" alt="Tulane Fabrication Labs Logo" class="lab-logo">
+
+            <h1>CONGRATULATIONS</h1>
+            <div class="subtitle">Tulane Architecture Fabrication Labs</div>
+            
+            <p>This certifies that the logged-in student</p>
+            <div class="name" id="student-name">Loading Learner...</div>
+            
+            <p>has successfully completed all safety training and operational coursework for:</p>
+            <div class="training-title" id="cert-type">General Lab Access</div>
+            
+            <div class="date-time-container">
+                Authorized on: <span class="timestamp" id="completion-date">Loading date...</span><br>
+                At precisely: <span class="timestamp" id="completion-time">Loading time...</span>
+            </div>
         </div>
     </div>
 
