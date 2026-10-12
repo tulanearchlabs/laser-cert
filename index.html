@@ -1,134 +1,418 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <b></b>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <b></b>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fabrication Lab Authorization</title>
-    <link rel="stylesheet" href="https://use.typekit.net/xvs8cca.css">
+    <link rel="stylesheet" href="https://use.typekit.net/xvs8cca.css" />
     <style>
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        text-align: center;
+        background-color: #f4f4f4;
+        padding: 30px;
+        color: #222;
+      }
+      h1 {
+        font-family: "rigid-square", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+      }
+      h2 {
+        font-family: "ltc-caslon-pro", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #777;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+      }
+
+      /* The main certificate container which holds the GIF border */
+      .security-wrapper {
+        position: relative;
+        max-width: 650px;
+        margin: 0 auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        overflow: hidden; /* Keeps the GIF confined */
+
+        /* Add your transparent GIF border loop here as a CSS background */
+        background-image: url("security-border.gif");
+        background-size: cover; /* Ensures the GIF covers the whole frame */
+        background-position: center;
+        background-repeat: repeat; /* If it's a small tileable GIF, it will repeat */
+      }
+
+      /* The inner box that creates the "padding" and holds the actual text */
+      .certificate-box {
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.96
+        ); /* High opacity white to see the GIF slightly through it */
+        margin: 20px; /* This margin defines the thickness of the visible GIF border */
+        padding: 40px;
+        position: relative;
+        z-index: 1; /* Sits on top of the border GIF */
+        border-radius: 8px; /* Slightly tighter radius than the main frame */
+      }
+
+      /* Styling for your uploaded logo image */
+      .lab-logo {
+        max-width: 150px; /* Adjust as needed */
+        height: auto;
+        margin-bottom: 25px;
+      }
+
+      h1 {
+        color: #1b365d;
+        font-size: 32px;
+        margin: 10px 0 5px 0;
+        letter-spacing: 1px;
+      }
+      .subtitle {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #777;
+        letter-spacing: 2px;
+        margin-bottom: 25px;
+      }
+      .name {
+        font-size: 28px;
+        font-weight: bold;
+        color: #d9534f;
+        margin: 20px 0;
+        border-bottom: 2px solid #eceff1;
+        padding-bottom: 10px;
+        display: inline-block;
+        min-width: 300px;
+      }
+      .training-title {
+        font-size: 22px;
+        font-weight: bold;
+        color: #1b365d;
+        margin: 15px 0;
+        font-style: italic;
+      }
+      .date-time-container {
+        font-style: italic;
+        color: #555;
+        margin-top: 25px;
+        line-height: 1.6;
+      }
+      .timestamp {
+        font-weight: bold;
+        color: #1b365d;
+      }
+
+      /* =========================================
+   MOBILE
+========================================= */
+
+      @media (max-width: 480px) {
+        html,
         body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
-            padding: 30px;
-            color: #222;
-        }
-        h1{
-            font-family: "rigid-square", sans-serif;
-            font-weight: 700;
-            font-style: normal;
-        }
-        h2{
-            font-family: "ltc-caslon-pro", serif;
-            font-weight: 400;
-            font-style: normal;
-            font-size: 14px; 
-            text-transform: 
-            uppercase; 
-            color: #777; 
-            letter-spacing: 2px; 
-            margin-bottom: 25px; 
+          width: 100%;
+          min-height: 100%;
+
+          margin: 0;
+          padding: 0;
         }
 
-        /* The main certificate container which holds the GIF border */
+        body {
+          background-color: #f4f4f4;
+        }
+
+        /* -----------------------------------------
+       SECURITY FRAME
+    ----------------------------------------- */
+
         .security-wrapper {
-            position: relative;
-            max-width: 650px;
-            margin: 0 auto;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden; /* Keeps the GIF confined */
-            
-            /* Add your transparent GIF border loop here as a CSS background */
-            background-image: url('security-border.gif');
-            background-size: cover; /* Ensures the GIF covers the whole frame */
-            background-position: center;
-            background-repeat: repeat; /* If it's a small tileable GIF, it will repeat */
+          width: 100%;
+          min-height: 100vh;
+          margin: 0;
+          border-radius: 0;
+          overflow: hidden;
+          box-shadow: none;
+          background-image: url("security-border.gif");
+          background-size: auto;
+          background-position: center;
+          background-repeat: repeat;
+          box-sizing: border-box;
         }
 
-        /* The inner box that creates the "padding" and holds the actual text */
+        /* -----------------------------------------
+       CERTIFICATE AREA
+    ----------------------------------------- */
+
         .certificate-box {
-            background-color: rgba(255, 255, 255, 0.96); /* High opacity white to see the GIF slightly through it */
-            margin: 20px; /* This margin defines the thickness of the visible GIF border */
-            padding: 40px;
-            position: relative;
-            z-index: 1; /* Sits on top of the border GIF */
-            border-radius: 8px; /* Slightly tighter radius than the main frame */
+          width: auto;
+          min-height: calc(100vh - 40px);
+          margin: 20px;
+          padding: 28px 18px;
+          border-radius: 0;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
         }
 
-        /* Styling for your uploaded logo image */
+        /* -----------------------------------------
+       LOGO
+    ----------------------------------------- */
+
         .lab-logo {
-            max-width: 150px; /* Adjust as needed */
-            height: auto;
-            margin-bottom: 25px;
+          display: block;
+
+          width: 100%;
+          max-width: 115px;
+
+          height: auto;
+
+          margin: 0 auto;
         }
 
-     h1 { color: #1b365d; font-size: 32px; margin: 10px 0 5px 0; letter-spacing: 1px; } 
-        .subtitle { font-size: 14px; text-transform: uppercase; color: #777; letter-spacing: 2px; margin-bottom: 25px; }
-        .name { font-size: 28px; font-weight: bold; color: #d9534f; margin: 20px 0; border-bottom: 2px solid #eceff1; padding-bottom: 10px; display: inline-block; min-width: 300px; }
-        .training-title { font-size: 22px; font-weight: bold; color: #1b365d; margin: 15px 0; font-style: italic; }
-        .date-time-container { font-style: italic; color: #555; margin-top: 25px; line-height: 1.6; }
-        .timestamp { font-weight: bold; color: #1b365d; }
+        /* -----------------------------------------
+       CONGRATULATIONS
+    ----------------------------------------- */
+
+        h1 {
+          font-size: clamp(26px, 8vw, 34px);
+
+          line-height: 1.05;
+
+          letter-spacing: 0;
+
+          white-space: nowrap;
+
+          margin: 0 auto;
+
+          max-width: 100%;
+        }
+
+        /* -----------------------------------------
+       TULANE ARCHITECTURE FABRICATION LABS
+    ----------------------------------------- */
+
+        h2 {
+          font-size: clamp(12px, 3.5vw, 15px);
+
+          line-height: 1.5;
+
+          letter-spacing: 1.2px;
+
+          max-width: 310px;
+
+          margin: 0 auto;
+        }
+
+        /* -----------------------------------------
+       BODY TEXT
+    ----------------------------------------- */
+
+        .certificate-box p {
+          font-size: 15px;
+
+          line-height: 1.55;
+
+          margin: 0 auto;
+
+          max-width: 310px;
+        }
+
+        /* -----------------------------------------
+       STUDENT NAME
+    ----------------------------------------- */
+
+        .name {
+          display: block;
+
+          width: 100%;
+
+          min-width: 0;
+          max-width: 100%;
+
+          font-size: clamp(23px, 7vw, 30px);
+
+          line-height: 1.2;
+
+          margin: 0 auto;
+
+          padding: 0 5px 10px;
+
+          overflow-wrap: anywhere;
+
+          box-sizing: border-box;
+        }
+
+        /* -----------------------------------------
+       TRAINING TITLE
+    ----------------------------------------- */
+
+        .training-title {
+          width: 100%;
+
+          max-width: 310px;
+
+          font-size: clamp(19px, 5.5vw, 23px);
+
+          line-height: 1.3;
+
+          margin: 0 auto;
+
+          overflow-wrap: anywhere;
+        }
+
+        /* -----------------------------------------
+       DATE / TIME
+    ----------------------------------------- */
+
+        .date-time-container {
+          width: 100%;
+
+          font-size: 13px;
+
+          line-height: 1.7;
+
+          margin: 0 auto;
+        }
+
+        .timestamp {
+          font-weight: bold;
+        }
+      }
+
+      /* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+      @media (max-width: 360px) {
+        .security-wrapper {
+          border-radius: 0;
+        }
+
+        .certificate-box {
+          /*
+         * Keep border exactly 20px.
+         */
+          margin: 20px;
+
+          padding: 24px 14px;
+
+          min-height: calc(100vh - 40px);
+
+          border-radius: 0;
+        }
+
+        .lab-logo {
+          max-width: 95px;
+        }
+
+        h1 {
+          font-size: 25px;
+        }
+
+        h2 {
+          font-size: 11px;
+          letter-spacing: 1px;
+        }
+
+        .certificate-box p {
+          font-size: 14px;
+        }
+
+        .name {
+          font-size: 22px;
+        }
+
+        .training-title {
+          font-size: 18px;
+        }
+
+        .date-time-container {
+          font-size: 12px;
+        }
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <div class="security-wrapper">
-        
-        <div class="certificate-box">
-            
-            <img src="tulane-logo.png" alt="Tulane Fabrication Labs Logo" class="lab-logo">
+      <div class="certificate-box">
+        <img
+          src="tulane-logo.png"
+          alt="Tulane Fabrication Labs Logo"
+          class="lab-logo"
+        />
 
-            <h1>CONGRATULATIONS</h1>
-            <h2>Tulane Architecture Fabrication Labs</h2>
-            
-            <p>This certifies that the logged-in student</p>
-            <div class="name" id="student-name">Loading Learner...</div>
-            
-            <p>has successfully completed all safety and operational training for:</p>
-            <div class="training-title" id="cert-type">General Lab Access</div>
-            
-            <div class="date-time-container">
-                Authorized on: <span class="timestamp" id="completion-date">Loading date...</span><br>
-                At precisely: <span class="timestamp" id="completion-time">Loading time...</span>
-            </div>
+        <h1>CONGRATULATIONS</h1>
+        <h2>Tulane Architecture Fabrication Labs</h2>
+
+        <p>This certifies that the logged-in student</p>
+        <div class="name" id="student-name">Loading Learner...</div>
+
+        <p>
+          has successfully completed all safety and operational training for:
+        </p>
+        <div class="training-title" id="cert-type">General Lab Access</div>
+
+        <div class="date-time-container">
+          Authorized on:
+          <span class="timestamp" id="completion-date">Loading date...</span
+          ><br />
+          At precisely:
+          <span class="timestamp" id="completion-time">Loading time...</span>
         </div>
+      </div>
     </div>
 
     <script>
-        // 1. Automatically Parse URL parameters to change the training title
-        const urlParams = new URLSearchParams(window.location.search);
-        const trainingName = urlParams.get('training');
-        
-        if (trainingName) {
-            document.getElementById('cert-type').textContent = decodeURIComponent(trainingName);
-        }
+      // 1. Automatically Parse URL parameters to change the training title
+      const urlParams = new URLSearchParams(window.location.search);
+      const trainingName = urlParams.get("training");
 
-        // 2. Set current date and local time automatically
-        const today = new Date();
-        
-        // Format Date (e.g., June 26, 2026)
-        const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('completion-date').textContent = today.toLocaleDateString(undefined, dateOptions);
+      if (trainingName) {
+        document.getElementById("cert-type").textContent =
+          decodeURIComponent(trainingName);
+      }
 
-        // Format Time (e.g., 11:45 AM CST)
-        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', timeZoneName: 'short' };
-        document.getElementById('completion-time').textContent = today.toLocaleTimeString(undefined, timeOptions);
+      // 2. Set current date and local time automatically
+      const today = new Date();
 
-        // 3. Ask and save student name locally
-        const savedName = localStorage.getItem('canvas_student_name');
-        if (savedName) {
-            document.getElementById('student-name').textContent = savedName;
+      // Format Date (e.g., June 26, 2026)
+      const dateOptions = { year: "numeric", month: "long", day: "numeric" };
+      document.getElementById("completion-date").textContent =
+        today.toLocaleDateString(undefined, dateOptions);
+
+      // Format Time (e.g., 11:45 AM CST)
+      const timeOptions = {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        timeZoneName: "short",
+      };
+      document.getElementById("completion-time").textContent =
+        today.toLocaleTimeString(undefined, timeOptions);
+
+      // 3. Ask and save student name locally
+      const savedName = localStorage.getItem("canvas_student_name");
+      if (savedName) {
+        document.getElementById("student-name").textContent = savedName;
+      } else {
+        const studentName = prompt(
+          "Please enter your full name for your training authorization record:",
+        );
+        if (studentName) {
+          localStorage.setItem("canvas_student_name", studentName);
+          document.getElementById("student-name").textContent = studentName;
         } else {
-            const studentName = prompt("Please enter your full name for your training authorization record:");
-            if (studentName) {
-                localStorage.setItem('canvas_student_name', studentName);
-                document.getElementById('student-name').textContent = studentName;
-            } else {
-                document.getElementById('student-name').textContent = "Authorized Student";
-            }
+          document.getElementById("student-name").textContent =
+            "Authorized Student";
         }
+      }
     </script>
-</body>
+  </body>
 </html>
